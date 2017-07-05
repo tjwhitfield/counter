@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 /******************************************************************************
 IMPLEMENT BASIC REDUX FUNCTIONS
 ******************************************************************************/
-/*
+
 const createStore = (reducer) => {
   let state;
   let listeners = [];
@@ -44,9 +44,6 @@ const combineReducers = (reducers) => {
 		);
 	};
 };
-*/
-const { createStore } = Redux;
-const { combineReducers } = Redux;
 
 /******************************************************************************
 DEFINE AND COMBINE REDUCERS
@@ -72,12 +69,9 @@ const todo = (state, action) => {
         completed: false
       };
     case 'TOGGLE_TODO':
-      console.log("toggling todo... state.id: " + state.id + " and action.id: " + action.id);
       if (state.id !== action.id) {
-        console.log("returning state");
         return state;
       }
-      console.log("returning UPDATED state with text: " + state.text + " and id: " + state.id + " and completed: " + !state.completed);
       return {
         text: state.text,
         id: state.id,
@@ -97,7 +91,7 @@ const todos = (state = [], action) => {
       ];
     case 'TOGGLE_TODO':
       return state.map(t => {
-        todo(t, action);
+        return todo(t, action);
       });
     default:
       return state;
@@ -136,7 +130,6 @@ let nextTodoId = 0;
 
 class TodoWidget extends React.Component {
   render() {
-    console.log("render");
     return (
       <div>
         <input ref={node => {
@@ -154,11 +147,9 @@ class TodoWidget extends React.Component {
         </button>
         <ul>
           {this.props.todos.map((todo) => {
-            console.log(store.getState().todos);
             return (
               <li key={todo.id}
                   onClick={() => {
-                    console.log("toggling todo.id: " + todo.id);
                     store.dispatch({
                       type: 'TOGGLE_TODO',
                       id: todo.id
