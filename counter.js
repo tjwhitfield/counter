@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 /******************************************************************************
 IMPLEMENT BASIC REDUX FUNCTIONS
 ******************************************************************************/
-
+/*
 const createStore = (reducer) => {
   let state;
   let listeners = [];
@@ -44,6 +44,9 @@ const combineReducers = (reducers) => {
 		);
 	};
 };
+*/
+const { createStore } = Redux;
+const { combineReducers } = Redux;
 
 /******************************************************************************
 DEFINE AND COMBINE REDUCERS
